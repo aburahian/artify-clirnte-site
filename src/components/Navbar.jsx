@@ -97,6 +97,7 @@ const Navbar = () => {
                       "https://i.ibb.co/5vFdhSM/default-avatar.png"
                     }
                     alt="User Avatar"
+                    title={user.displayName}
                   />
                 </div>
               </div>
