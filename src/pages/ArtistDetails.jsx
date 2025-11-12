@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import useAxiosSecure from "../hook/useAxiosSecure";
+import useAxiosSecure from "../Hook/useAxiosSecure";
 import { FaUser, FaEnvelope, FaGlobe, FaPaintBrush } from "react-icons/fa";
 import { Link, useParams } from "react-router";
 import Spinner from "../components/Spinner";
@@ -10,7 +10,6 @@ const ArtistDetails = () => {
   const axiosSecure = useAxiosSecure();
   const [artist, setArtist] = useState(null);
   const [artworks, setArtworks] = useState([]);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,9 +42,12 @@ const ArtistDetails = () => {
           className="w-40 h-40 rounded-full object-cover border-4 border-primary"
         />
         <div>
-          <h2 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-            <FaUser /> {artist.displayName}
-          </h2>
+          <div className="flex items-center">
+            <h2 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+              <FaUser /> {artist.displayName}
+            </h2>
+            <button className="btn rounded-full ml-5">Follow</button>
+          </div>
           <p className="text-gray-600 flex items-center gap-2">
             <FaEnvelope /> {artist.email}
           </p>

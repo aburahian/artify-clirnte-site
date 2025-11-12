@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAccusoft, FaAmilia } from "react-icons/fa";
 import { Link, NavLink } from "react-router";
 import useAuth from "../Hook/useAuth";
@@ -6,6 +6,12 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, signOutUser, setLoading } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   const handleLogOut = () => {
     signOutUser()
       .then(() => {
@@ -16,25 +22,68 @@ const Navbar = () => {
         console.log(error.message);
       });
   };
-
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-primary font-bold" : "font-semibold"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/arts"}>Explore Artworks</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-primary font-bold" : "font-semibold"
+          }
+          to={"/arts"}
+        >
+          Explore Artworks
+        </NavLink>
       </li>
       {user && (
         <>
           <li>
-            <NavLink to="/arts/myGallery">My Gallery</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-2 border-primary font-bold"
+                  : "font-semibold"
+              }
+              to="/arts/myGallery"
+            >
+              My Gallery
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/arts/addArtWork">Add Artwork</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-2 border-primary font-bold"
+                  : "font-semibold"
+              }
+              to="/arts/addArtWork"
+            >
+              Add Artwork
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/arts/favorites">My Favorites</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "border-b-2 border-primary font-bold"
+                  : "font-semibold"
+              }
+              to="/arts/favorites"
+            >
+              My Favorites
+            </NavLink>
           </li>
         </>
       )}
@@ -102,8 +151,19 @@ const Navbar = () => {
                 </div>
               </div>
               <ul className="dropdown-content mt-3  p-2 shadow bg-base-100 rounded-box w-44 text-center">
-                <li className="font-semibold text-gray-700">
+                <li className="font-semibold my-2">
                   {user.displayName || "User"}
+                </li>
+                <Link to={`/arts/art/artist/${user.email}`}>
+                  <li className="font-semibold my-2">Profile</li>
+                </Link>
+                <li className="font-semibold my-2">
+                  <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    checked={theme === "dark"}
+                    className="toggle"
+                  />
                 </li>
                 <li>
                   <button

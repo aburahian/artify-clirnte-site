@@ -38,7 +38,7 @@ const CommunityHighlights = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto my-20">
+    <div className="w-11/12 mx-auto my-30">
       <h2 className="text-3xl font-extrabold text-primary mb-6">
         Community Highlights
       </h2>

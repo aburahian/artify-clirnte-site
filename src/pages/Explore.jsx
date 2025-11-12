@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ArtCard from "../components/ArtCard";
 import NotFound from "./NotFound";
 import Spinner from "../components/Spinner";
-import useAxiosSecure from "../hook/useAxiosSecure";
+import useAxiosSecure from "../Hook/useAxiosSecure";
 
 const Explore = () => {
   const axiosInstance = useAxiosSecure();
@@ -28,14 +28,14 @@ const Explore = () => {
     });
   };
   const handleCategoryChange = (e) => {
-  const category = e.target.value;
-  setSelectedCategory(category);
-  setLoading(true);
-  axiosInstance.get(`/artWorks?category=${category}`).then((res) => {
-    setArts(res.data);
-    setLoading(false);
-  });
-};
+    const category = e.target.value;
+    setSelectedCategory(category);
+    setLoading(true);
+    axiosInstance.get(`/artWorks?category=${category}`).then((res) => {
+      setArts(res.data);
+      setLoading(false);
+    });
+  };
   return (
     <div className="w-11/12 mx-auto ">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-4  my-8">

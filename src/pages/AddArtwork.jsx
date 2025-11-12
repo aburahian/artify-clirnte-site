@@ -1,7 +1,8 @@
 import React from "react";
-import useAuth from "../hook/useAuth";
-import useAxiosSecure from "../hook/useAxiosSecure";
+import useAuth from "../Hook/useAuth";
+import useAxiosSecure from "../Hook/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Typewriter } from "react-simple-typewriter";
 
 const AddArtwork = () => {
   const { user } = useAuth();
@@ -29,7 +30,6 @@ const AddArtwork = () => {
       artistName: user?.displayName || "Unknown Artist",
       artistEmail: user?.email,
       createdAt: new Date(),
-  
     };
     axiosInstance.post("/artWorks", addArt).then((res) => {
       if (res.data.insertedId) {
@@ -42,8 +42,20 @@ const AddArtwork = () => {
   };
   return (
     <section className="max-w-2xl mx-auto mt-10 bg-white/70 backdrop-blur-lg p-8 rounded-2xl shadow-lg">
-      <h2 className="text-3xl font-bold text-center  mb-6 text-primary">
-        Add New Artwork
+      <h2 className="text-3xl font-bold text-center mb-6 text-primary">
+        <Typewriter
+          words={[
+            "Add New Artwork",
+            "Show Your Creativity",
+            "Share Your Vision",
+          ]}
+          loop={true}
+          cursor
+          cursorStyle="|"
+          typeSpeed={70}
+          deleteSpeed={50}
+          delaySpeed={1500}
+        />
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <label className="font-semibold ">Title</label>
@@ -119,7 +131,7 @@ const AddArtwork = () => {
           name="userName"
           defaultValue={user?.displayName || ""}
           readOnly
-          className="input input-bordered w-full mt-1 bg-gray-100"
+          className="input input-bordered w-full mt-1  "
         />
         <label className="font-semibold">User Email</label>
         <input
@@ -127,7 +139,7 @@ const AddArtwork = () => {
           name="userEmail"
           defaultValue={user?.email || ""}
           readOnly
-          className="input input-bordered w-full mt-1 bg-gray-100"
+          className="input input-bordered w-full mt-1 "
         />
         <button type="submit" className="btn btn-primary w-full">
           Upload Artwork

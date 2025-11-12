@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
 import { Link, useParams } from "react-router";
-import useAxiosSecure from "../hook/useAxiosSecure";
-import useAuth from "../hook/useAuth";
+import useAxiosSecure from "../Hook/useAxiosSecure";
+import useAuth from "../Hook/useAuth";
 
 const ArtDetails = () => {
   const { id } = useParams();
@@ -14,7 +14,6 @@ const ArtDetails = () => {
   const [favorited, setFavorited] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  console.log(user.email);
 
   useEffect(() => {
     axiosInstance.get(`/artworks/${id}`).then((res) => {
@@ -64,8 +63,8 @@ const ArtDetails = () => {
           <h1 className="text-4xl font-extrabold text-primary mb-2">
             {art.title}
           </h1>
-          <p className="text-gray-600 text-lg mb-4">{art.medium}</p>
-          <p className="text-gray-700 leading-relaxed mb-6">
+          <p className=" text-lg mb-4">{art.medium}</p>
+          <p className="text-gray-500 leading-relaxed mb-6">
             {art.description}
           </p>
 

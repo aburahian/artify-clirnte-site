@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import NotFound from "./NotFound";
 import Spinner from "../components/Spinner";
 import ArtCard from "../components/ArtCard";
-import useAxiosSecure from "../hook/useAxiosSecure";
+import useAxios from "../Hook/useAxios";
 
 const Home = () => {
-  const axiosInstance = useAxiosSecure();
+  const axiosInstance = useAxios();
   const [arts, setArts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ const Home = () => {
     setLoading(false);
   }, [axiosInstance]);
   return (
-    <div className="w-11/12 mx-auto mt-30">
+    <div className="w-11/12 mx-auto my-30">
       <h2 className="text-3xl font-extrabold text-primary my-10">
         Explore Artworks
       </h2>

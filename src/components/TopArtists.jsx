@@ -44,7 +44,7 @@ const TopArtists = () => {
     },
   ];
   return (
-    <div className="w-11/12 mx-auto my-20">
+    <div className="w-11/12 mx-auto my-30">
       <h2 className="text-3xl font-extrabold text-primary mb-6">
         Top Artists of the Week
       </h2>
@@ -60,9 +60,9 @@ const TopArtists = () => {
               alt={artist.name}
               className="w-24 h-24 rounded-full mb-3"
             />
-            <h3 className="font-bold text-lg">{artist.name}</h3>
+            <h3 className="font-bold text-gray-500 text-lg">{artist.name}</h3>
             <p className="text-sm text-gray-500">{artist.email}</p>
-            <p className="mt-2 text-sm">
+            <p className="mt-2 text-sm text-gray-500">
               {artist.totalArtworks} artworks • {artist.totalLikes} likes
             </p>
           </div>

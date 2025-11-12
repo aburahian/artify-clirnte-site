@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useAuth from "../hook/useAuth";
-import useAxiosSecure from "../hook/useAxiosSecure";
+import useAuth from "../Hook/useAuth";
+import useAxiosSecure from "../Hook/useAxiosSecure";
 
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
