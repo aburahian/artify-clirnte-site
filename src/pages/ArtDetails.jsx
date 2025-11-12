@@ -14,6 +14,7 @@ const ArtDetails = () => {
   const [favorited, setFavorited] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
+ 
 
   useEffect(() => {
     axiosInstance.get(`/artworks/${id}`).then((res) => {
@@ -63,6 +64,7 @@ const ArtDetails = () => {
           <h1 className="text-4xl font-extrabold text-primary mb-2">
             {art.title}
           </h1>
+          <p className=" text-sm mb-4">{art.artistName}</p>
           <p className=" text-lg mb-4">{art.medium}</p>
           <p className="text-gray-500 leading-relaxed mb-6">
             {art.description}
