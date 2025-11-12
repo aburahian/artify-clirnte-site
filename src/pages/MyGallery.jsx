@@ -19,8 +19,9 @@ const MyGallery = () => {
   });
   useEffect(() => {
     if (!user) return;
+    setLoading(true);
     axiosInstance
-      .get(`/artworks?artistEmail=${user.email}`)
+      .get(`/my-artworks?artistEmail=${user.email}`)
       .then((res) => {
         setArts(res.data);
         setLoading(false);
@@ -78,43 +79,44 @@ const MyGallery = () => {
     });
   };
 
-  if (loading) return <Spinner />;
-
   return (
     <div className="w-11/12 mx-auto py-12">
       <h1 className="text-3xl text-primary font-bold mb-8">My Gallery</h1>
       <div className="border-b-2 border-primary my-9"></div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {arts.map((art) => (
-          <div
-            key={art._id}
-            className="flex flex-col justify-between p-4 rounded-lg shadow-lg bg-base-100"
-          >
-            <img
-              src={art.image}
-              alt={art.title}
-              className="w-full h-64 object-cover rounded-md mb-4"
-            />
-            <h2 className="text-xl font-bold">{art.title}</h2>
-            <p className="text-gray-600">{art.medium}</p>
-            <div className="flex gap-2 mt-4">
-              <button
-                onClick={() => openUpdateModal(art)}
-                className="btn btn-primary btn-sm"
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(art._id)}
-                className="btn btn-error btn-sm"
-              >
-                Delete
-              </button>
+      {loading ? (
+        <Spinner></Spinner>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {arts.map((art) => (
+            <div
+              key={art._id}
+              className="flex flex-col justify-between p-4 rounded-lg shadow-lg bg-base-100"
+            >
+              <img
+                src={art.image}
+                alt={art.title}
+                className="w-full h-64 object-cover rounded-md mb-4"
+              />
+              <h2 className="text-xl font-bold">{art.title}</h2>
+              <p className="text-gray-600">{art.medium}</p>
+              <div className="flex gap-2 mt-4">
+                <button
+                  onClick={() => openUpdateModal(art)}
+                  className="btn btn-primary btn-sm"
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDelete(art._id)}
+                  className="btn btn-error btn-sm"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <dialog id="update_modal" className="modal">
         <div className="modal-box">
