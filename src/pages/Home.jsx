@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div className="w-11/12 mx-auto my-30">
       <h2 className="text-3xl font-extrabold text-primary my-10">
-        Explore Artworks
+        Latest Artworks
       </h2>
       <div className="border-b-2 border-primary my-9"></div>
       {loading ? (
