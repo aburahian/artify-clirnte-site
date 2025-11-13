@@ -119,10 +119,13 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-primary font-bold text-xl">
+          <Link
+            to={"/"}
+            className="btn btn-ghost text-primary font-bold text-xl"
+          >
             <FaAmilia size={24} />
             <span className="-ml-1.5 font-extrabold text-2xl">rtify</span>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>

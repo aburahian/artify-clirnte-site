@@ -7,21 +7,22 @@ import Spinner from "../components/Spinner";
 
 const ArtistDetails = () => {
   const { email } = useParams();
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxiosSecure();
   const [artist, setArtist] = useState(null);
   const [artworks, setArtworks] = useState([]);
 
+
   useEffect(() => {
     const fetchData = async () => {
-      const { data: artistData } = await axiosSecure.get(`/artists/${email}`);
-      const { data: artsData } = await axiosSecure.get(
+      const { data: artistData } = await axiosInstance.get(`/artists/${email}`);
+      const { data: artsData } = await axiosInstance.get(
         `/artworks?artist=${email}`
       );
       setArtist(artistData);
       setArtworks(artsData);
     };
     fetchData();
-  }, [email, axiosSecure]);
+  }, [email, axiosInstance]);
 
   if (!artist)
     return (
